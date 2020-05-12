@@ -1,0 +1,31 @@
+.navbar-main {
+  background: transparent;
+  padding: 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  font-family: 'Kanit', sans-serif;
+  &:hover,
+  &:focus {
+    color: white;
+  }
+}
+
+.nav-menu {
+  .nav-item {
+    .nav-link {
+      font-family: 'Kanit', sans-serif;
+      padding: 1rem;
+      color: white;
+    }
+    &:hover,
+    &:focus {
+      .nav-link {
+        color: white;
+      }
+    }
+  }
+}
