@@ -3,8 +3,6 @@ import {
   PRODUCTS_FETCH_PENDING,
   PRODUCTS_FETCH_SUCCESS,
   PRODUCTS_FETCH_FAILURE,
-  ADD_TO_CART_PENDING,
-  ADD_TO_CART_SUCCESS,
 } from 'utils/redux/types'
 
 export const fetchProducts = () => {
@@ -23,12 +21,5 @@ export const fetchProducts = () => {
         console.warn(error)
         dispatch({ type: PRODUCTS_FETCH_FAILURE })
       })
-  }
-}
-
-export const addToCart = (item) => {
-  return (dispatch) => {
-    dispatch({ type: ADD_TO_CART_PENDING })
-    dispatch({ type: ADD_TO_CART_SUCCESS, item: item })
   }
 }

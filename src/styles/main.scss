@@ -4,6 +4,7 @@
 @import 'variables.scss';
 @import 'navigation.scss';
 @import 'card.scss';
+@import 'cart.scss';
 
 body {
   background: #edf2f7;
@@ -47,4 +48,10 @@ body {
       }
     }
   }
+}
+
+.page-header {
+  background: $primary;
+  padding: 8rem 1rem 1rem 1rem;
+  color: white;
 }

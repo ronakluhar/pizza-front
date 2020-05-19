@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { LOGIN_PENDING, LOGIN_SUCCESS, LOGIN_FAILURE } from 'utils/redux/types'
+import { setStep } from './cart'
 
-export const loginUser = (credentials, history) => {
+export const loginUser = (credentials) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_PENDING })
 
@@ -10,7 +11,7 @@ export const loginUser = (credentials, history) => {
       .then((res) => {
         localStorage.setItem('loggedIn', true)
         localStorage.setItem('token', res.data.data.api_token)
-        history('../', { replace: true })
+        dispatch(setStep(2))
         dispatch({ type: LOGIN_SUCCESS, user: res.data.data.user })
       })
       .catch((error) => {

@@ -3,10 +3,12 @@ import storage from 'redux-persist/lib/storage'
 import authReducers from 'utils/redux/reducers/auth'
 import productsReducers from 'utils/redux/reducers/products'
 import cartReducers from 'utils/redux/reducers/cart'
+import hardSet from 'redux-persist/lib/stateReconciler/hardSet'
 
 const config = {
   key: 'root',
   storage: storage,
+  stateReconciler: hardSet,
 }
 
 const rootReducer = persistCombineReducers(config, {

@@ -2,13 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToCart } from 'utils/redux/actions/products'
+import { addToCart } from 'utils/redux/actions/cart'
+import _ from 'lodash'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartPlus, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const PizzaCard = ({ product }) => {
   const dispatch = useDispatch()
-  const { loading } = useSelector((state) => ({
+  const { loading, items } = useSelector((state) => ({
     loading: state.cartReducers.loading,
+    items: state.cartReducers.items,
   }))
+  const addedToCart = _.find(
+    items,
+    _.method('name.match', new RegExp(product.name, 'i'))
+  )
   return (
     <div className="pizza-card">
       {product.image && (
@@ -21,8 +29,15 @@ const PizzaCard = ({ product }) => {
         <Button
           className="add-to-cart"
           onClick={() => dispatch(addToCart(product))}
+          disabled={addedToCart}
         >
-          {loading ? 'Loading...' : 'Add to Cart'}
+          {loading ? (
+            'Loading...'
+          ) : addedToCart ? (
+            <FontAwesomeIcon icon={faCheckCircle} />
+          ) : (
+            <FontAwesomeIcon icon={faCartPlus} />
+          )}
         </Button>
       </div>
     </div>

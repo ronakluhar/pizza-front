@@ -70,5 +70,14 @@
       background: $primary;
       color: white;
     }
+    &.disabled {
+      border: 2px solid #333333;
+      color: #333333;
+      &:hover,
+      &:focus {
+        background: transparent;
+        color: #333333;
+      }
+    }
   }
 }
