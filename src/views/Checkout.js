@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap'
 import { Layout, Login, DeliveryInfo } from 'containers'
 import { PageHeader } from 'components'
 import { useSelector } from 'react-redux'
-import { calculateCartPrice } from 'utils/cartHelper'
+import { calculateCartPrice, calculateCartItems } from 'utils/cartHelper'
 
 const Checkout = () => {
   const { items, step } = useSelector((state) => ({
@@ -19,18 +19,13 @@ const Checkout = () => {
             <div className="checkout-container">
               <Login step={step} />
               <DeliveryInfo step={step} />
-              {/* <div className="item">
-                <div className="header">
-                  <div className="title">Payment</div>
-                </div>
-                {step === 3 && <div className="content">3</div>}
-              </div> */}
             </div>
           </Col>
           <Col md={4}>
             <div className="checkout-wrapper">
               <div>
-                Sub Total ({items.length} {items.length > 1 ? 'items' : 'item'}
+                Sub Total ({calculateCartItems(items)}
+                {calculateCartItems(items) > 1 ? 'items' : 'item'}
                 ): ${calculateCartPrice(items)}
               </div>
             </div>

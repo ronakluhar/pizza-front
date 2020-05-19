@@ -21,6 +21,7 @@
     "axios": "^0.19.2",
     "formik": "^2.1.4",
     "lodash": "^4.17.15",
+    "moment": "^2.25.3",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -30,7 +31,8 @@
     "reactstrap": "^8.4.1",
     "redux": "4.0.4",
     "redux-persist": "6.0.0",
-    "redux-thunk": "2.3.0"
+    "redux-thunk": "2.3.0",
+    "yup": "^0.28.5"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,12 +1,11 @@
 import {
   SET_STEP_SUCCESS,
   PLACE_ORDER_PENDING,
+  PLACE_ORDER_SUCCESS,
   ADD_TO_CART_PENDING,
   ADD_TO_CART_SUCCESS,
-  // ADD_TO_CART_FAILURE,
   UPDATE_CART_PENDING,
   UPDATE_CART_SUCCESS,
-  // UPDATE_CART_FAILURE,
 } from '../types'
 import axios from 'axios'
 
@@ -31,9 +30,8 @@ export const setStep = (step) => {
   }
 }
 
-export const placeOrder = (token, customerInfo, address, items) => {
+export const placeOrder = (token, customerInfo, address, items, navigation) => {
   const order = { ...customerInfo, ...address, items: items }
-  console.log(order)
   return (dispatch) => {
     dispatch({ type: PLACE_ORDER_PENDING })
     axios
@@ -43,7 +41,9 @@ export const placeOrder = (token, customerInfo, address, items) => {
         },
       })
       .then((res) => {
-        console.log(res)
+        dispatch(setStep(3))
+        dispatch({ type: 'PLACE_ORDER_SUCCESS' })
+        navigation('/order-success', { replace: true })
       })
   }
 }

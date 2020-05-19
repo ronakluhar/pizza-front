@@ -5,6 +5,7 @@ import {
   UPDATE_CART_PENDING,
   UPDATE_CART_SUCCESS,
   SET_STEP_SUCCESS,
+  PLACE_ORDER_SUCCESS,
 } from 'utils/redux/types'
 
 const initialState = {
@@ -31,6 +32,8 @@ const cartReducers = (state = initialState, action) => {
       return { ...state, loading: false, errors: false, items: action.items }
     case SET_STEP_SUCCESS:
       return { ...state, step: action.step }
+    case PLACE_ORDER_SUCCESS:
+      return { ...state, items: [], step: 1 }
     default:
       return { ...state }
   }

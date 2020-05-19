@@ -6,9 +6,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { placeOrder } from 'utils/redux/actions/cart'
+import { useNavigate } from '@reach/router'
+import * as Yup from 'yup'
 
 const DeliveryInfo = ({ step }) => {
-  const { control, handleSubmit } = useForm()
+  const validationSchema = Yup.object({
+    customer_phone: Yup.string().required(),
+    customer_address_1: Yup.string().required(),
+    customer_address_area: Yup.string().required(),
+    customer_address_zip: Yup.string().required(),
+  })
+  const { control, handleSubmit, errors } = useForm({
+    validationSchema: validationSchema,
+  })
   const dispatch = useDispatch()
   const { name, email, token, items } = useSelector((state) => ({
     name: state.authReducers.user && state.authReducers.user.name,
@@ -16,6 +26,7 @@ const DeliveryInfo = ({ step }) => {
     token: state.authReducers.user && state.authReducers.user.api_token,
     items: state.cartReducers.items,
   }))
+  const navigation = useNavigate()
   return (
     <div className="item">
       <div className="header">
@@ -31,7 +42,8 @@ const DeliveryInfo = ({ step }) => {
                   token,
                   { customer_name: name, customer_email: email },
                   values,
-                  items
+                  items,
+                  navigation
                 )
               )
             )}
@@ -45,6 +57,7 @@ const DeliveryInfo = ({ step }) => {
                     control={control}
                     name="customer_phone"
                     type="text"
+                    invalid={errors && errors.customer_phone}
                   />
                 </FormGroup>
               </Col>
@@ -56,6 +69,7 @@ const DeliveryInfo = ({ step }) => {
                     control={control}
                     name="customer_address_1"
                     type="text"
+                    invalid={errors && errors.customer_address_1}
                   />
                 </FormGroup>
               </Col>
@@ -67,6 +81,7 @@ const DeliveryInfo = ({ step }) => {
                     control={control}
                     name="customer_address_area"
                     type="text"
+                    invalid={errors && errors.customer_address_area}
                   />
                 </FormGroup>
               </Col>
@@ -78,6 +93,7 @@ const DeliveryInfo = ({ step }) => {
                     control={control}
                     name="customer_address_zip"
                     type="text"
+                    invalid={errors && errors.customer_address_zip}
                   />
                 </FormGroup>
               </Col>
