@@ -4,6 +4,7 @@ import { Layout } from 'containers'
 import { PageHeader, OrderItem } from 'components'
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders } from 'utils/redux/actions/orders'
+import { Helmet } from 'react-helmet'
 
 const MyOrders = () => {
   const { token, orders } = useSelector((state) => ({
@@ -15,10 +16,13 @@ const MyOrders = () => {
 
   useEffect(() => {
     token && dispatch(myOrders(token))
-  }, [dispatch])
+  }, [dispatch, token])
 
   return (
     <Layout>
+      <Helmet>
+        <title>My Orders - {process.env.REACT_APP_NAME}</title>
+      </Helmet>
       <PageHeader title="My Orders" />
       <Container>
         {orders &&

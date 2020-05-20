@@ -4,6 +4,7 @@ import { Layout, Login, DeliveryInfo } from 'containers'
 import { PageHeader } from 'components'
 import { useSelector } from 'react-redux'
 import { calculateCartPrice, calculateCartItems } from 'utils/cartHelper'
+import { Helmet } from 'react-helmet'
 
 const Checkout = () => {
   const { items, step } = useSelector((state) => ({
@@ -12,6 +13,9 @@ const Checkout = () => {
   }))
   return (
     <Layout>
+      <Helmet>
+        <title>Checkout - {process.env.REACT_APP_NAME}</title>
+      </Helmet>
       <PageHeader title="Checkout" />
       <Container>
         <Row>

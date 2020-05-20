@@ -4,10 +4,14 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { Link } from '@reach/router'
 import { Layout } from 'containers'
 import { PageHeader } from 'components'
+import { Helmet } from 'react-helmet'
 
 const OrderSuccess = () => {
   return (
     <Layout>
+      <Helmet>
+        <title>Order Success - {process.env.REACT_APP_NAME}</title>
+      </Helmet>
       <PageHeader title="Order Success" />
       <div className="mt-5">
         <div className="content text-center">

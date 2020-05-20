@@ -15,10 +15,22 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const toggle = () => setIsOpen(!isOpen)
 
+  window.addEventListener('scroll', () => {
+    if (window.scrollY >= 100) {
+      setScrolled(true)
+    } else {
+      setScrolled(false)
+    }
+  })
+
   return (
-    <Navbar className="navbar-main fixed-top" expand="md">
+    <Navbar
+      className={`navbar-main fixed-top ${scrolled && 'scrolled'}`}
+      expand="md"
+    >
       <Container fluid>
         <NavbarBrand href="/">{process.env.REACT_APP_NAME}</NavbarBrand>
         <NavbarToggler onClick={toggle} />

@@ -5,6 +5,7 @@ import { PageHeader, CartItem } from 'components'
 import { useSelector } from 'react-redux'
 import { calculateCartPrice, calculateCartItems } from 'utils/cartHelper'
 import { useNavigate } from '@reach/router'
+import { Helmet } from 'react-helmet'
 
 const Cart = () => {
   const history = useNavigate()
@@ -14,6 +15,9 @@ const Cart = () => {
   const totalItems = calculateCartItems(items)
   return (
     <Layout>
+      <Helmet>
+        <title>Cart - {process.env.REACT_APP_NAME}</title>
+      </Helmet>
       <PageHeader title="Cart" />
       <Container>
         <Row>
